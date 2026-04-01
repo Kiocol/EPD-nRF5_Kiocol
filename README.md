@@ -39,7 +39,7 @@
 结合图片推送功能，制作了待办事项推送功能，目前已实现利用网页缓存保持之前编辑过的代办事项，能根据待办事项重要程度进行提醒，和一些小装饰。
 
 ## 致谢
-
+  
 - [tsl0922/EPD-nRF5](https://tsl0922.github.io/EPD-nRF5)
 - [ZinggJM/GxEPD2](https://github.com/ZinggJM/GxEPD2)
 - [waveshareteam/e-Paper](https://github.com/waveshareteam/e-Paper)
