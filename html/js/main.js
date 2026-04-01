@@ -21,7 +21,7 @@ let epdService, epdCharacteristic;
 let startTime, msgIndex, appVersion;
 let canvas, ctx, textDecoder;
 let paintManager, cropManager;
-
+//20260401
 // APP版本号 (便于调试)
 const APP_VERSION = '2.0.3';
 const APP_BUILD_DATE = '2026-03-10';
