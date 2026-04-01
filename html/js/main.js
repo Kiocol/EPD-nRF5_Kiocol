@@ -328,9 +328,23 @@ async function drawDayViewWithTodos() {
                 textWidth = ctx.measureText(displayText).width;
             }
 
-            // 绘制待办文本
-            ctx.fillStyle = item.completed ? '#888888' : '#000000';
+            // 绘制待办文本（统一黑色）
+            ctx.fillStyle = '#000000';
             ctx.fillText(displayText, startTextX, y);
+
+            // 如果已完成，绘制删除线
+            if (item.completed) {
+                ctx.save();
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = Math.max(1, fontSize / 12);
+                ctx.beginPath();
+                // 删除线位置：基线向上偏移字体高度的 35%（适配大部分字体）
+                const lineY = y - fontSize * 0.35;
+                ctx.moveTo(startTextX, lineY);
+                ctx.lineTo(startTextX + textWidth, lineY);
+                ctx.stroke();
+                ctx.restore();
+            }
 
             // 绘制紧急符号（放在文本后面）
             if (urgencySymbol) {
