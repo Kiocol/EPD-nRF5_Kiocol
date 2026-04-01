@@ -328,18 +328,22 @@ async function drawDayViewWithTodos() {
                 textWidth = ctx.measureText(displayText).width;
             }
 
-            // 绘制待办文本（统一黑色）
+            // 绘制待办文本（统一黑色，不改变字体）
             ctx.fillStyle = '#000000';
             ctx.fillText(displayText, startTextX, y);
 
-            // 如果已完成，绘制删除线
+            // 如果已完成，绘制删除线（不改变字体样式）
             if (item.completed) {
                 ctx.save();
                 ctx.strokeStyle = '#000000';
                 ctx.lineWidth = Math.max(1, fontSize / 12);
                 ctx.beginPath();
-                // 删除线位置：基线向上偏移字体高度的 35%（适配大部分字体）
-                const lineY = y - fontSize * 0.35;
+
+                // 更精确地计算删除线垂直位置：使用实际文本的 ascent 信息（若无则回退）
+                const metrics = ctx.measureText(displayText);
+                const fontAscent = metrics.actualBoundingBoxAscent || fontSize * 0.75;
+                const lineY = y - fontAscent * 0.35;  // 通常删除线在字体中间偏上
+
                 ctx.moveTo(startTextX, lineY);
                 ctx.lineTo(startTextX + textWidth, lineY);
                 ctx.stroke();
